@@ -19,7 +19,11 @@ public class playerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (transform.position.x > 25 || transform.position.x < -25 ||
+            transform.position.z > 25 || transform.position.z < -25)
+        {
+            PlayerDies();
+        }
     }
 
     public void TakeDamage(int damageAmount)
@@ -43,5 +47,7 @@ public class playerHealth : MonoBehaviour
         Debug.Log("Player is dead...");
         
         transform.Rotate(-90, 0, 0, Space.Self);
+
+        FindObjectOfType<LevelManager>().GameOver();
     }
 }

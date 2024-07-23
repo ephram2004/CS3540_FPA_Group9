@@ -26,4 +26,14 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(level);
     }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void GameOver()
+    {
+        Invoke("LoadMainMenu", 2);
+    }
 }
