@@ -161,3 +161,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 15
+  fireSFX: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}

@@ -6,6 +6,7 @@ public class PickupBehavior : MonoBehaviour
 {
     public static int totalCoins = 0;
     public float rotationSpeed = 5f;
+    public AudioClip collectSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,7 @@ public class PickupBehavior : MonoBehaviour
 
     private void OnDestroy() {
         totalCoins--;
+        AudioSource.PlayClipAtPoint(collectSFX, transform.position);
         Debug.Log("Pickups remaining " + totalCoins);
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 public class ProjectileBehavior : MonoBehaviour
 {
     public int damageAmount = 25;
-    static int numHits;
+    public AudioClip fireSFX;
     // Start is called before the first frame update
     void Start()
     {
-        numHits = 0;
+        AudioSource.PlayClipAtPoint(fireSFX, transform.position);
     }
 
     // Update is called once per frame
@@ -22,13 +22,9 @@ public class ProjectileBehavior : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Enemy"))
         {
-            numHits += 1;
             // apply damage
             var enemyHealth = other.gameObject.GetComponent<EnemyBehavior>();
             enemyHealth.TakeDamage(damageAmount);
-
-            Debug.Log("Hit the enemy " + numHits + " times.");
-
         }
     }
 }

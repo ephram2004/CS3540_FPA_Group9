@@ -7,6 +7,7 @@ public class playerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public Slider healthSlider;
+    public AudioClip damageSFX;
 
     int currentHealth;
 
@@ -32,20 +33,17 @@ public class playerHealth : MonoBehaviour
         {
             currentHealth -= damageAmount;
             healthSlider.value = currentHealth;
+            AudioSource.PlayClipAtPoint(damageSFX, transform.position);
         }
 
         if(currentHealth <= 0)
         {
             PlayerDies();
         }
-
-        Debug.Log("Current health " + currentHealth);
     }
 
     void PlayerDies()
     {
-        Debug.Log("Player is dead...");
-        
         transform.Rotate(-90, 0, 0, Space.Self);
 
         FindObjectOfType<LevelManager>().GameOver();

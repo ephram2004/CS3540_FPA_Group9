@@ -119,11 +119,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9feb2e38537d2bb4d86951a35b23cadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7444437250562348162, guid: bb42a7f085ed4e34394553f5e2d81aab, type: 3}
+  player: {fileID: 0}
   moveSpeed: 4.55
-  minDistance: 1
+  attackRange: 2
+  hostileRange: 9.92
   damageAmount: 20
   totalHealth: 100
+  attackCooldown: 3
+  attackDuration: 1
+  swordPrefab: {fileID: 997634894915592139, guid: 722a43eeff061c74ea1dc2e46681e362, type: 3}
 --- !u!54 &1339988195360378877
 Rigidbody:
   m_ObjectHideFlags: 0
