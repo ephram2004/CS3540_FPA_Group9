@@ -8,32 +8,34 @@ public class playerHealth : MonoBehaviour
     public int startingHealth = 100;
     public Slider healthSlider;
     public AudioClip damageSFX;
+    public float invulnerableTime;
 
     int currentHealth;
+    float invulnerableTimer;
+    bool canGetHurt;
 
     void Start()
     {
         currentHealth = startingHealth;
         healthSlider.value = currentHealth;
+        canGetHurt = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x > 25 || transform.position.x < -25 ||
-            transform.position.z > 25 || transform.position.z < -25)
-        {
-            PlayerDies();
-        }
+        updateTimers();
     }
 
     public void TakeDamage(int damageAmount)
     {
-        if(currentHealth > 0)
+        if(currentHealth > 0 && canGetHurt)
         {
+            invulnerableTimer = invulnerableTime;
             currentHealth -= damageAmount;
             healthSlider.value = currentHealth;
             AudioSource.PlayClipAtPoint(damageSFX, transform.position);
+            canGetHurt = false;
         }
 
         if(currentHealth <= 0)
@@ -42,9 +44,19 @@ public class playerHealth : MonoBehaviour
         }
     }
 
+    private void updateTimers()
+    {
+        invulnerableTimer -= Time.deltaTime;
+        if (invulnerableTimer <= 0)
+        {
+            canGetHurt = true;
+        }
+    }
+
     void PlayerDies()
     {
         transform.Rotate(-90, 0, 0, Space.Self);
+        Debug.Log("died");
 
         FindObjectOfType<LevelManager>().GameOver();
     }
